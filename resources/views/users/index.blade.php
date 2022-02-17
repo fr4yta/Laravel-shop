@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-12">
                 <h1 class="font-weight-bold mt-2">List of users:</h1>
                 <table class="table table-hover">
@@ -29,6 +29,11 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="pagination justify-content-end">
+                    {{ $users->links() }}
+                </div>
             </div>
         </div>
     </div>

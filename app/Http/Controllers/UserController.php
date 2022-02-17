@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index() //:View|Factory|Application [PHP >= 8.0]
     {
-        return view('users.index', ['users' => User::all()]);
+        return view('users.index', ['users' => User::paginate(3)]);
     }
 
     /**
