@@ -12,6 +12,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Surname</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Phone number</th>
                             <th scope="col">Created at</th>
                         </tr>
                     </thead>
@@ -22,6 +23,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->surname }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone_number }}</td>
                                 <td>{{ $user->created_at }}</td>
                             </tr>
                         @endforeach
