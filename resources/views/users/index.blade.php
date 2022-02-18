@@ -14,6 +14,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone number</th>
                             <th scope="col">Created at</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,9 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone_number }}</td>
                                 <td>{{ $user->created_at }}</td>
+                                <td>
+                                    <a href="#"><button class="btn btn-danger btn-sm delete" data-id="{{ $user->id }}">X</button></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -37,4 +41,21 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('javascript')
+    $(function() {
+        $('.delete').click(function () {
+            $.ajax({
+                method: "DELETE",
+                url: "http://127.0.0.1:8000/users/" + $(this).data('id')
+            })
+            .done(function (respone) {
+                window.location.reload();
+            })
+            .fail(function(respone) {
+                console.log("ERROR");
+            });
+        });
+    });
 @endsection
