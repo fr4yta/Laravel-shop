@@ -30,8 +30,8 @@
                             <td>{{ $product->amount }}</td>
                             <td>{{ $product->price }}</td>
                             <td>
-                                <a href="{{ route('products.show', $product->id) }}"><button class="btn btn-success btn-sm">Show</button></a>
-                                <a href="{{ route('products.edit', $product->id) }}"><button class="btn btn-primary btn-sm">Edit</button></a>
+                                <a href="{{ route('products.show', $product->id) }}"><button class="btn btn-success btn-sm">S</button></a>
+                                <a href="{{ route('products.edit', $product->id) }}"><button class="btn btn-primary btn-sm">E</button></a>
                                 <a href="#"><button class="btn btn-danger btn-sm delete" data-id="{{ $product->id }}">X</button></a>
                             </td>
                         </tr>

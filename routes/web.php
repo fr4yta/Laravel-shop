@@ -3,6 +3,7 @@
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Standard route:
-Route::get('/', function () {
-    return view('welcome');
-});
+//Standard route (default route):
+Route::get('/', [WelcomeController::class, 'index']);
 
 //Products:
 Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');

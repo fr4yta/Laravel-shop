@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ route('products.store') }}" method="post">
+                <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -21,6 +21,12 @@
                     <div class="form-group">
                         <label for="price">Price</label>
                         <input type="number" step="0.01" min="0" class="form-control" id="price" placeholder="Enter price..." name="price" value="{{ old('price') }}" />
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="image" name="image" />
+                            <label class="custom-file-label" for="image">Choose file</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary float-right px-5">Send form</button>
                 </form>
