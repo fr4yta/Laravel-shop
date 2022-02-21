@@ -44,18 +44,9 @@
 @endsection
 
 @section('javascript')
-    $(function() {
-        $('.delete').click(function () {
-            $.ajax({
-                method: "DELETE",
-                url: "http://127.0.0.1:8000/users/" + $(this).data('id')
-            })
-            .done(function (respone) {
-                window.location.reload();
-            })
-            .fail(function(respone) {
-                console.log("ERROR");
-            });
-        });
-    });
+    const deleteUrl = "{{ url('users') }}/";
+@endsection
+
+@section('javascript-files')
+    <script src="{{ asset('js/delete.js') }}"></script>
 @endsection

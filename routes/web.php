@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::get('/users/list', [UserController::class, 'index'])->middleware('auth');
 
 //Route to delete user in panel:
-Route::delete('/users/{id}',[UserController::class, 'destroy'])->middleware('auth');
+Route::delete('/users/{user}',[UserController::class, 'destroy'])->middleware('auth');
 
 //Normal route:
 Route::get('/hello', [HelloController::class, 'show']);

@@ -81,6 +81,6 @@
     <script type="text/javascript">
         @yield('javascript')
     </script>
-
+    @yield('javascript-files')
 </body>
 </html>
