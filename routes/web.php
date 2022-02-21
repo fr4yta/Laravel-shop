@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Products:
+Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('auth');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show')->middleware('auth');
+Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('auth');
+Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit')->middleware('auth');
+Route::post('/products/update/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('auth');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.delete')->middleware('auth');
 
 //Route only when you're login:
 Route::get('/users/list', [UserController::class, 'index'])->middleware('auth');
