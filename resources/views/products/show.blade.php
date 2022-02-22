@@ -21,6 +21,13 @@
                     <label for="price">Price</label>
                     <input type="number" step="0.01" min="0" class="form-control" id="price" placeholder="Enter price..." name="price" value="{{ $product->price }}" readonly />
                 </div>
+                <div class="form-group">
+                    @if($product->image_path == null)
+                        <div class="alert alert-warning rounded">Brak zdjęcia.</div>
+                    @else
+                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="Product image" width="240px" height="240px" />
+                    @endif
+                </div>
             </div>
         </div>
     </div>
