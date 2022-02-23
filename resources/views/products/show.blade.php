@@ -22,6 +22,18 @@
                     <input type="number" step="0.01" min="0" class="form-control" id="price" placeholder="Enter price..." name="price" value="{{ $product->price }}" readonly />
                 </div>
                 <div class="form-group">
+                    <div class="form-group">
+                        <label for="category_id">{{ __('shop.product.add_form.category') }}</label>
+                        <select class="form-control" id="category_id" name="category_id" disabled>
+                        @if($product->hasCategory())
+                            <option>{{ $product->category->name }}</option>
+                        @else
+                            <option>Brak</option>
+                        @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="image">{{ __('shop.product.add_form.image') }}</label>
                     @if($product->image_path == null)
                         <div class="alert alert-warning rounded">Brak zdjęcia.</div>

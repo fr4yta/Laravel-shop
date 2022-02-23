@@ -12,6 +12,7 @@ return [
             'description' => 'Opis produktu',
             'amount' => 'Ilość',
             'price' => 'Cena',
+            'category' => 'Kategoria',
             'image' => 'Zdjęcie',
             'image_button' => 'Wybierz zdjęcie',
         ],

@@ -44,6 +44,22 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <div class="form-group">
+                            <label for="category_id">{{ __('shop.product.add_form.category') }}</label>
+                            <select class="form-control @error('category_id') is-invalid @enderror" id="category_id" name="category_id" required>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                                <option value="">Brak</option>
+                            </select>
+                            @error('category_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="image">{{ __('shop.product.add_form.image') }}</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image" name="image" />

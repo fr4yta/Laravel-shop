@@ -19,6 +19,19 @@ class Product extends Model
         'name',
         'description',
         'amount',
-        'price'
+        'price',
+        'category_id'
     ];
+
+    public function category() {
+        return $this->belongsTo(ProductCategory::class);
+    }
+
+    public function isSelectedCategory($category_id) {
+        return $this->hasCategory() && $this->category->id == $category_id;
+    }
+
+    public function hasCategory() {
+        return !is_null($this->category);
+    }
 }
