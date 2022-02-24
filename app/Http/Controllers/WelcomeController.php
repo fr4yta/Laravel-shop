@@ -12,11 +12,37 @@ class WelcomeController extends Controller {
      *
      * @return Application|Factory|View
      */
-    public function index() //:View|Factory|Application [PHP >= 8.0]
+    public function index(Request $request) //:View|Factory|Application [PHP >= 8.0]
     {
+        $filters = $request->query('filter');
+
+        //$paginate = $request->query('paginate') ?? 5;
+        if($request->query('paginate') == null) {
+            $paginate = 5;
+        } else {
+            $paginate = $request->query('paginate');
+        }
+
+        $query = Product::query();
+
+        if(!is_null($filters)) {
+            if(array_key_exists('categories', $filters)) {
+                $query = $query->whereIn('category_id', $filters['categories']);
+            }
+            if(!is_null($filters['price_min'])) {
+                $query = $query->where('price', '>=', $filters['price_min']);
+            }
+            if(!is_null($filters['price_max'])) {
+                $query = $query->where('price', '<=', $filters['price_max']);
+            }
+
+            return response()->json($query->paginate($paginate));
+        }
+
         return view('welcome', [
-            'products' => Product::paginate(10),
+            'products' => $query->paginate($paginate),
             'categories' => ProductCategory::orderBy('name', 'ASC')->get(),
+            'default_img' => 'https://via.placeholder.com/240x240/5fa9f8/efefef'
         ]);
     }
 }

@@ -17,23 +17,23 @@
                                     <a class="dropdown-item" href="#">Best Selling</a>
                                 </div>
                             </div>
-                            <div class="btn-group float-md-right ml-3">
+                            <div class="btn-group">
                                 <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-left"></span> </button>
                                 <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-right"></span> </button>
                             </div>
                             <div class="dropdown float-right">
-                                <label class="mr-2">View:</label>
-                                <a class="btn btn-lg btn-light dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">9 <span class="caret"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" x-placement="bottom-end" style="will-change: transform; position: absolute; transform: translate3d(120px, 48px, 0px); top: 0px; left: 0px;">
-                                    <a class="dropdown-item" href="#">12</a>
-                                    <a class="dropdown-item" href="#">24</a>
-                                    <a class="dropdown-item" href="#">48</a>
-                                    <a class="dropdown-item" href="#">96</a>
+                                <label class="mr-2">Wyświetl:</label>
+                                <a class="btn btn-lg btn-light dropdown-toggle products-actual-count" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">5<span class="caret"></span></a>
+                                <div class="dropdown-menu dropdown-menu-right products-count" aria-labelledby="navbarDropdown" x-placement="bottom-end" style="will-change: transform; position: absolute; transform: translate3d(120px, 48px, 0px); top: 0px; left: 0px;">
+                                    <a class="dropdown-item" href="#">5</a>
+                                    <a class="dropdown-item" href="#">10</a>
+                                    <a class="dropdown-item" href="#">15</a>
+                                    <a class="dropdown-item" href="#">20</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="products-wrapper">
                         @foreach($products as $product)
                             <div class="col-6 col-md-6 col-lg-4 mb-3">
                                 <div class="card h-100 border-0">
@@ -41,7 +41,7 @@
                                         @if(!is_null($product->image_path))
                                             <img src="{{ asset('storage/' . $product->image_path) }}" class="mx-auto d-block" alt="Product image" width="240px" height="240px" />
                                         @else
-                                            <img src="https://via.placeholder.com/240x240/5fa9f8/efefef" class="mx-auto d-block" alt="Product image" width="240px" height="240px" />
+                                            <img src="{{ $default_img }}" class="mx-auto d-block" alt="Product image" width="240px" height="240px" />
                                         @endif
                                     </div>
                                     <div class="card-body text-center">
@@ -60,30 +60,31 @@
                         <div class="col-12">
                             <a class="btn btn-light">
                                 <i class="fas fa-arrow-up mr-2"></i> Back to top</a>
-                            <div class="btn-group float-md-right ml-3">
+                            <div class="btn-group">
                                 <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-left"></span> </button>
                                 <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-right"></span> </button>
                             </div>
                             <div class="dropdown float-md-right">
-                                <label class="mr-2">View:</label>
-                                <a class="btn btn-light btn-lg dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">12 <span class="caret"></span></a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">12</a>
-                                    <a class="dropdown-item" href="#">24</a>
-                                    <a class="dropdown-item" href="#">48</a>
-                                    <a class="dropdown-item" href="#">96</a>
+                                <label class="mr-2">Wyświetl:</label>
+                                <a class="btn btn-light btn-lg dropdown-toggle products-actual-count" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">5<span class="caret"></span></a>
+                                <div class="dropdown-menu products-count" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">5</a>
+                                    <a class="dropdown-item" href="#">10</a>
+                                    <a class="dropdown-item" href="#">15</a>
+                                    <a class="dropdown-item" href="#">20</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><div class="col-md-4 order-md-1 col-lg-3 sidebar-filter">
+                </div>j
+            </div>
+            <form class="col-md-4 order-md-1 col-lg-3 sidebar-filter">
                 <h3 class="mt-0 mb-5">Produkty <span class="text-primary">{{ count($products) }}</span></h3>
                 <h6 class="text-uppercase font-weight-bold mb-3">Kategorie</h6>
                 @foreach($categories as $category)
                     <div class="mt-2 mb-2 pl-2">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="category-{{ $category->id }}">
+                            <input type="checkbox" class="custom-control-input" id="category-{{ $category->id }}" name="filter[categories][]" value="{{ $category->id }}">
                             <label class="custom-control-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
                         </div>
                     </div>
@@ -91,14 +92,21 @@
                 <div class="divider mt-5 mb-5 border-bottom border-secondary"></div>
                 <h6 class="text-uppercase mt-5 mb-3 font-weight-bold">Cena</h6>
                 <div class="price-filter-control">
-                    Cena od: <input type="number" class="form-control w-100 pull-left mb-2" value="50" id="price-min-control">
-                    Cena do: <input type="number" class="form-control w-100 pull-right" value="150" id="price-max-control">
+                    Cena od: <input type="number" class="form-control w-100 pull-left mb-2" placeholder="50" id="price-min-control" name="filter[price_min]" />
+                    Cena do: <input type="number" class="form-control w-100 pull-right" placeholder="150" id="price-max-control" name="filter[price_max]" />
                 </div>
                 <input id="ex2" type="text" class="slider " value="50,150" data-slider-min="10" data-slider-max="200" data-slider-step="5" data-slider-value="[50,150]" data-value="50,150" style="display: none;">
                 <div class="divider mt-5 mb-5 border-bottom border-secondary"></div>
-                <a href="#" class="btn btn-lg btn-block btn-primary mt-5">Update Results</a>
-            </div>
+                <a href="#" class="btn btn-lg btn-block btn-primary mt-5" id="filter-button">Filtruj</a>
+            </form>
 
         </div>
     </div>
+@endsection
+@section('javascript')
+    const storagePath = '{{ asset('storage') }}/';
+    const default_img = '{{ $default_img }}';
+@endsection
+@section('javascript-files')
+    <script src="{{ asset('js/welcome.js') }}"></script>
 @endsection
