@@ -52,6 +52,7 @@
                                             <i>PLN {{ $product->price }}</i>
                                         </h5>
                                     </div>
+                                    <button class="btn btn-outline-primary btn-sm add-cart-button" data-id="{{ $product->id }}"@guest disabled @endguest><i class="fa-solid fa-cart-shopping"></i> Dodaj do koszyka</button>
                                 </div>
                             </div>
                         @endforeach
@@ -104,8 +105,11 @@
     </div>
 @endsection
 @section('javascript')
-    const storagePath = '{{ asset('storage') }}/';
-    const default_img = '{{ $default_img }}';
+    const WELCOME_DATA = {
+        storagePath: '{{ asset('storage') }}/',
+        default_img: '{{ $default_img }}',
+        addToCart: '{{ url('cart') }}/',
+    }
 @endsection
 @section('javascript-files')
     <script src="{{ asset('js/welcome.js') }}"></script>
