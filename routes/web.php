@@ -21,13 +21,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WelcomeController::class, 'index']);
 
 Route::middleware(['auth', 'verified'])->group(function() {
-    Route::resource('products', ProductController::class);
+    Route::middleware(['can:isAdmin'])->group(function() {
+        //Products all:
+        Route::resource('products', ProductController::class);
 
-    //Route only when you're login:
-    Route::get('/users/list', [UserController::class, 'index'])->middleware('auth');
+        //Route only when you're login:
+        Route::get('/users/list', [UserController::class, 'index']);
 
-    //Route to delete user in panel:
-    Route::delete('/users/{user}',[UserController::class, 'destroy'])->middleware('auth');
+        //Route to delete user in panel:
+        Route::delete('/users/{user}',[UserController::class, 'destroy']);
+    });
 
     //Default route (home):
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

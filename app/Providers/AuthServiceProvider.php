@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Enums\UserRole;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +27,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        $this->defineUserRoleGate('isUser', UserRole::USER);
+        $this->defineUserRoleGate('isAdmin', UserRole::ADMIN);
+    }
+
+    private function defineUserRoleGate($name, $role) {
+        Gate::define($name, function (User $user) use($role) {
+            return $user->role === $role;
+        });
     }
 }
