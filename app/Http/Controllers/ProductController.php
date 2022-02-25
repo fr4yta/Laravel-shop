@@ -8,6 +8,7 @@ use App\Models\ProductCategory;
 use http\Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 class ProductController extends Controller
@@ -49,7 +50,7 @@ class ProductController extends Controller
         }
         $product->save();
 
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('status', 'Dodano nowy produkt!');
     }
 
     /**
@@ -94,7 +95,7 @@ class ProductController extends Controller
             $product->image_path = $request->file('image')->store('products');
         }
         $product->save();
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('status', 'Pomyslnie edytowano produkt!');
     }
 
     /**
@@ -107,6 +108,7 @@ class ProductController extends Controller
     {
         try {
             $product->delete();
+            Session::flash('status', 'Usunieto produkt!');
             return response()->json([
                 'status' => 'success'
             ]);

@@ -33,14 +33,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
-//Products:
-/*Route::get('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('auth');
-Route::post('/products', [ProductController::class, 'store'])->name('products.store')->middleware('auth');
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show')->middleware('auth');
-Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit')->middleware('auth');
-Route::post('/products/update/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('auth');
-Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.delete')->middleware('auth');*/
-
 //Normal route:
 Route::get('/hello', [HelloController::class, 'show']);
 

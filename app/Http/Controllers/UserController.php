@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -87,6 +88,7 @@ class UserController extends Controller
     {
         try {
             $user->delete();
+            Session::flash('status', 'Usunieto uzytkownika!');
             return response()->json([
                 'status' => 'success'
             ]);

@@ -7,6 +7,7 @@
                 <h1>{{ __('shop.product.edit_form.title') }}: <b>{{ $product->id }}</b></h1><hr/>
                 <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="form-group">
                         <label for="name">{{ __('shop.product.add_form.name') }} <span class="text-danger font-weight-bold">*</span></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" maxlength="500" value="{{ $product->name }}" required />

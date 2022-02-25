@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     </div>
-                </div>j
+                </div>
             </div>
             <form class="col-md-4 order-md-1 col-lg-3 sidebar-filter">
                 <h3 class="mt-0 mb-5">Produkty <span class="text-primary">{{ count($products) }}</span></h3>
@@ -97,7 +97,7 @@
                 </div>
                 <input id="ex2" type="text" class="slider " value="50,150" data-slider-min="10" data-slider-max="200" data-slider-step="5" data-slider-value="[50,150]" data-value="50,150" style="display: none;">
                 <div class="divider mt-5 mb-5 border-bottom border-secondary"></div>
-                <a href="#" class="btn btn-lg btn-block btn-primary mt-5" id="filter-button">Filtruj</a>
+                <a href="#" class="btn btn-lg btn-block btn-primary mt-5" id="filter-button"><i class="fa-brands fa-searchengin"></i> Filtruj</a>
             </form>
 
         </div>

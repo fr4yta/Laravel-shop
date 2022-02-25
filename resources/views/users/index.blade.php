@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="font-weight-bold mt-2">List of users:</h1>
+                @include('helpers.flash-messages')
+                <h1 class="font-weight-bold mt-2"><i class="fa-solid fa-users"></i> List of users:</h1>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -27,7 +28,7 @@
                                 <td>{{ $user->phone_number }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>
-                                    <a href="#"><button class="btn btn-danger btn-sm delete" data-id="{{ $user->id }}">X</button></a>
+                                    <a href="#"><button class="btn btn-danger btn-sm delete" data-id="{{ $user->id }}"><i class="fa-solid fa-trash"></i></button></a>
                                 </td>
                             </tr>
                         @endforeach
