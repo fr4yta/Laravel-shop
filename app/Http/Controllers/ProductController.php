@@ -8,7 +8,9 @@ use App\Models\ProductCategory;
 use http\Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 class ProductController extends Controller
@@ -90,8 +92,13 @@ class ProductController extends Controller
      */
     public function update(UpsertProductRequest $request, Product $product)
     {
+        $oldImagePath = $product->image_path;
+
         $product->fill($request->validated());
         if($request->hasFile('image')) {
+            if(Storage::disk('public')->exists($oldImagePath)) {
+                Storage::delete($oldImagePath);
+            }
             $product->image_path = $request->file('image')->store('products');
         }
         $product->save();
@@ -117,6 +124,21 @@ class ProductController extends Controller
                 'status' => 'error',
                 'message' => 'Wystąpił błąd!'
             ])->setStatusCode(500);
+        }
+    }
+
+    /**
+     * Download image of the specified resource in storage.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse|\Illuminate\Http\RedirectResponse
+     */
+    public function downloadImage(Product $product)
+    {
+        if(Storage::disk('public')->exists($product->image_path)) {
+            return Storage::download($product->image_path);
+        } else {
+            return Redirect::back();
         }
     }
 }

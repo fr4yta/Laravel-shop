@@ -61,11 +61,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="image">{{ __('shop.product.add_form.image') }}</label>
+                        <label for="image">{{ __('shop.product.add_form.image') }}</label><br/>
                         @if($product->image_path == null)
                             <div class="alert alert-warning rounded">Brak zdjęcia.</div>
                         @else
-                            <img src="{{ asset('storage/' . $product->image_path) }}" alt="Product image" width="240px" height="240px" />
+                            <a href="{{ route('products.downloadImage', $product->id) }}"><img src="{{ asset('storage/' . $product->image_path) }}" alt="Product image" width="240px" height="240px" /></a>
+                            {{-- <a href="{{ asset('storage/' . $product->image_path) }}" download="download"><button class="btn btn-sm btn-success" type="button">Pobierz obraz</button></a>--}}
                         @endif
                         <div class="custom-file">
                             <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image" name="image" />
