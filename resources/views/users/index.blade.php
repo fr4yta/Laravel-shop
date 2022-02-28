@@ -29,6 +29,7 @@
                                 <td>{{ $user->created_at }}</td>
                                 <td>
                                     <a href="#"><button class="btn btn-danger btn-sm delete" data-id="{{ $user->id }}"><i class="fa-solid fa-trash"></i></button></a>
+                                    <a href="{{ route('users.edit', $user->id) }}"><button class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></button></a>
                                 </td>
                             </tr>
                         @endforeach

@@ -110,6 +110,7 @@
         default_img: '{{ $default_img }}',
         addToCart: '{{ url('cart') }}/',
         listCart: '{{ url('cart') }}',
+        isGuest: '{{ $isGuest }}',
     }
 @endsection
 @section('javascript-files')

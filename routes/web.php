@@ -27,11 +27,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
         //Products all:
         Route::resource('products', ProductController::class);
 
-        //Route only when you're login:
-        Route::get('/users/list', [UserController::class, 'index']);
-
-        //Route to delete user in panel:
-        Route::delete('/users/{user}',[UserController::class, 'destroy']);
+        //Users all:
+        Route::resource('users', UserController::class)->only([
+            'index', 'edit', 'update', 'destroy'
+        ]);
     });
 
     //Cart:

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WelcomeController extends Controller {
     /**
@@ -42,7 +43,8 @@ class WelcomeController extends Controller {
         return view('welcome', [
             'products' => $query->paginate($paginate),
             'categories' => ProductCategory::orderBy('name', 'ASC')->get(),
-            'default_img' => config('shop.defaultImg')
+            'default_img' => config('shop.defaultImg'),
+            'isGuest' => Auth::guest()
         ]);
     }
 }

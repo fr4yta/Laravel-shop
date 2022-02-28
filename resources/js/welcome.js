@@ -11,7 +11,7 @@ $(function () {
         getProducts($('.products-actual-count').first().text());
     });
 
-    $('.add-cart-button').click(function (event) {
+    $('body').on('click', '.add-cart-button', function (event) {
         event.preventDefault();
         $.ajax({
             method: "POST",
@@ -59,6 +59,7 @@ $(function () {
                     '                       <i>PLN ' + product.price + '</i>\n' +
                     '                   </h5>\n' +
                     '               </div>\n' +
+                    '               <button class="btn btn-outline-primary btn-sm add-cart-button' + getDisabled() + '" data-id="' + product.id + '"><i class="fa-solid fa-cart-shopping"></i> Dodaj do koszyka</button>\n' +
                     '             </div>\n' +
                     '           </div>';
                 $('#products-wrapper').append(html);
@@ -71,5 +72,12 @@ $(function () {
             return WELCOME_DATA.storagePath + product.image_path;
         }
         return WELCOME_DATA.default_img;
+    }
+
+    function getDisabled() {
+        if(WELCOME_DATA.isGuest) {
+            return ' disabled';
+        }
+        return '';
     }
 });

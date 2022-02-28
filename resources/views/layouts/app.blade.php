@@ -55,7 +55,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @can('isAdmin')
                                         <a class="dropdown-item" href="{{ route('products.index') }}"><i class="fa-solid fa-rectangle-list"></i> Products</a>
-                                        <a class="dropdown-item" href="/users/list"><i class="fa-solid fa-user-gear"></i> Users list</a>
+                                        <a class="dropdown-item" href="{{ route('users.index') }}"><i class="fa-solid fa-user-gear"></i> Users list</a>
                                     @endcan
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-right-from-bracket"></i> {{ __('Logout') }}</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
