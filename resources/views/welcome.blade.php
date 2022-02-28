@@ -109,6 +109,7 @@
         storagePath: '{{ asset('storage') }}/',
         default_img: '{{ $default_img }}',
         addToCart: '{{ url('cart') }}/',
+        listCart: '{{ url('cart') }}',
     }
 @endsection
 @section('javascript-files')

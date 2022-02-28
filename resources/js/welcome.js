@@ -27,7 +27,7 @@ $(function () {
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    alert("OK");
+                    window.location = WELCOME_DATA.listCart;
                 }
             })
         })

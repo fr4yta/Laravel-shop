@@ -66,6 +66,17 @@ class CartItem {
         return $this->imagePath;
     }
 
+    /**
+     * @return null
+     */
+    public function getImage() {
+        if(!is_null($this->getImagePath())) {
+            return asset('storage/' . $this->getImagePath());
+        } else {
+            return config("shop.defaultImg");
+        }
+    }
+
     public function getSum() {
         return $this->price * $this->quantity;
     }

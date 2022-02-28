@@ -8,6 +8,10 @@ ul {
     background: #0e8ce4;
     border-radius: 5px;
     height: 48px;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
     transition: all 200ms ease
 }
 
@@ -89,6 +93,10 @@ ul {
     height: 20px;
     border-radius: 50%;
     margin-right: 11px;
+    -webkit-transform: translateY(4px);
+    -moz-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    -o-transform: translateY(4px);
     transform: translateY(4px)
 }
 
@@ -165,4 +173,3 @@ ul {
     cursor: pointer;
     vertical-align: top
 }
-

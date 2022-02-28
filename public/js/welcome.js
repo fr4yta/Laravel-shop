@@ -28,7 +28,7 @@ $(function () {
         reverseButtons: true
       }).then(function (result) {
         if (result.isConfirmed) {
-          alert("OK");
+          window.location = WELCOME_DATA.listCart;
         }
       });
     }).fail(function (data) {
