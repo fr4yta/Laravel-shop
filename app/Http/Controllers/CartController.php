@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\Cart\CartDto;
-use App\Dtos\Cart\CartItemDto;
 use App\Http\Requests\UpsertProductRequest;
 use App\Models\Product;
+use App\ValueObjects\Cart;
+use App\ValueObjects\CartItem;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -20,6 +20,7 @@ class CartController extends Controller {
      */
     public function index()
     {
+        dd(Session::get('cart', new Cart()));
         return view('home');
     }
 
@@ -30,33 +31,10 @@ class CartController extends Controller {
      * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Product $product) {
-        $cart = Session::get('cart', new CartDto());
-        $items = $cart->getItems();
-
-        if(Arr::exists($items, $product->id)) {
-            $items[$product->id]->incrementQuantity();
-        } else {
-            $cartItemDto = $this->getCartItemDto($product);
-            $items[$product->id] = $cartItemDto;
-        }
-        $cart->setItems($items);
-        $cart->incrementTotalQuantity();
-        $cart->incrementTotalSum($product->price);
-
-        Session::put('cart', $cart);
-
+        $cart = Session::get('cart', new Cart());
+        Session::put('cart', $cart->addItem($product));
         return response()->json([
             'status' => 'success',
         ]);
-    }
-
-    private function getCartItemDto(Product $product) {
-        $cartItemDto = new CartItemDto();
-        $cartItemDto->setProductId($product->id);
-        $cartItemDto->setName($product->name);
-        $cartItemDto->setPrice($product->price);
-        $cartItemDto->setQuantity(1);
-        $cartItemDto->setQuantity($product->image_path);
-        return $cartItemDto;
     }
 }
