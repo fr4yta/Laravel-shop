@@ -57,6 +57,8 @@
                                         <a class="dropdown-item" href="{{ route('products.index') }}"><i class="fa-solid fa-rectangle-list"></i> Products</a>
                                         <a class="dropdown-item" href="{{ route('users.index') }}"><i class="fa-solid fa-user-gear"></i> Users list</a>
                                     @endcan
+                                    <a class="dropdown-item" href="{{ route('cart.index') }}"><i class="fa-solid fa-cart-arrow-down"></i> Cart list</a>
+                                    <a class="dropdown-item" href="{{ route('orders.index') }}"><i class="fa-solid fa-list"></i> Orders</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-right-from-bracket"></i> {{ __('Logout') }}</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

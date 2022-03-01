@@ -26,6 +26,10 @@ class Cart {
         return $this->items;
     }
 
+    public function hasItems() {
+        return $this->items->isNotEmpty();
+    }
+
     /**
      * @return array
      */
@@ -33,6 +37,16 @@ class Cart {
     {
         return $this->items->sum(function ($item) {
             return $item->getSum();
+        });
+    }
+
+    /**
+     * @return array
+     */
+    public function getQuantity()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->getQuantity();
         });
     }
 

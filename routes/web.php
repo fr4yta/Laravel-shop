@@ -38,6 +38,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/cart/{product}', [App\Http\Controllers\CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/{product}',[\App\Http\Controllers\CartController::class, 'destroy'])->name('cart.destroy');
 
+    //Orders:
+    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+
     //Default route (home):
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });

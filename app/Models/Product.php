@@ -34,4 +34,8 @@ class Product extends Model
     public function hasCategory() {
         return !is_null($this->category);
     }
+
+    public function orders() {
+        return $this->belongsToMany(Order::class);
+    }
 }
