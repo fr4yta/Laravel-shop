@@ -14,6 +14,12 @@
                             <div class="cart_container">
                                 @include('helpers.flash-messages')
                                 <div class="cart_title"><i class="fa fa-shopping-bag"></i> Koszyk<small> (<b>{{ $cart->getItems()->count() }}</b> przedmiot/y) </small></div>
+                                @if (session('warning'))
+                                    <div class="alert alert-danger">
+                                        <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        {{ session('warning') }}
+                                    </div>
+                                @endif
                                 <form action="{{ route('orders.store') }}" method="post">
                                     @csrf
                                     <div class="cart_items">

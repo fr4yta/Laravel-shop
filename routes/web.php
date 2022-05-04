@@ -52,4 +52,7 @@ Route::get('/hello', [HelloController::class, 'show']);
 //Auth routes:
 Auth::routes(['verify' => true]);
 
+//Przelewy24:
+Route::post('/payment/status', [\App\Http\Controllers\PaymentController::class, 'status']);
+
 
